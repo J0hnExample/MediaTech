@@ -6,6 +6,14 @@
     "configurations": [
         {
             "type": "java",
+            "name": "bmp_io",
+            "request": "launch",
+            "mainClass": "bmp_io",
+            "projectName": "MediaTech_39035d9f",
+            "args": "src/bmp_io/a01/Detail_Apogee.bmp"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
