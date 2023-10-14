@@ -15,8 +15,8 @@ public final class bmp_io {
 		String inFilename = null;
 		String outFilename = null;
 		
-		int hight = 0;
-		int width = 0;
+		int hight = 520;
+		int width = 960;
 		int bits = 0;
 		
 		// Klasse zum Lesen und Schreiben der Farbwerte eines Pixels
@@ -41,6 +41,15 @@ public final class bmp_io {
 			// Implementierung
 			// Zugriff auf Pixel mit bmp.image.getRgbPixel(x, y);
 			// Setzen eines Pixels mit bmp.image.setRgbPixel(x, y, pc);
+
+			for (int i = 0; i <= hight; i++) {
+				for (int j = 0; j < args.length; j++) {
+					pc = bmp.image.getRgbPixel(i, j);
+					System.out.println("PixelColor@" + " " + i + " " + j + " " + pc.r + " " + pc.g + " " + pc.b);
+				}
+				
+				
+			}
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
