@@ -19,7 +19,7 @@
             "mainClass": "bmp_io",
             "projectName": "MediaTech_39035d9f",
             //"args": "src/bmp_io/a01/Flaeche_Apogee.bmp",
-            "args" : "src/bmp_io/a01/Testbild/Testbild.bmp"
+            "args" : "src/bmp_io/a01/Testbild/TestbildGrau.bmp"
         },
         {
             "type": "java",
