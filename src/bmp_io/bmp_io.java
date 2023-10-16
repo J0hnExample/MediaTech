@@ -44,14 +44,15 @@ public final class bmp_io {
 			// Setzen eines Pixels mit bmp.image.setRgbPixel(x, y, pc);
 
 			
-			for (int i = 0; i <= width; i++) {
+		 	for (int i = 0; i <= width; i++) {
 				for (int j = 0; j <= hight; j++) {
 					pc = bmp.image.getRgbPixel(i, j);
 					System.out.println("PixelColor@" + " " + i + " " + j + " " + pc.r + " " + pc.g + " " + pc.b);
 				}
 				
 				
-			}
+			} 
+		
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
