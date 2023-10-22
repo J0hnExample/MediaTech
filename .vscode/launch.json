@@ -10,7 +10,8 @@
             "request": "launch",
             "mainClass": "wav_io.wave_io",
             "projectName": "MediaTech_39035d9f",
-            "args": "src/wav_io/a01/Sprache_Apogee.wav"
+            //"args": "src/wav_io/a02/Sprache_Apogee_2.wav"
+            "args": "src/wav_io/a02/Sprache_Apogee_3.wav src/wav_io/a02/Sprache_Apogee_4.wav"
         },
         {
             "type": "java",

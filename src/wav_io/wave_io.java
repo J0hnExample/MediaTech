@@ -4,6 +4,8 @@ import java.io.IOException;
 
 public class wave_io {
 	
+
+
 	public static void main(String[] args) {
 	
 		int samples = 0;
@@ -11,11 +13,15 @@ public class wave_io {
 		long sampleRate = 0;
 		long numFrames = 0; 
 		int numChannels = 0;
+	
+		//Reduzieren der Sample Bits
+		int bitReductionFactor = 2;
 
 		String inFilename = null;
 		String outFilename = null;
 		
 		WavFile readWavFile = null;
+		short[] reducedSamples = null;
 		
 		if (args.length < 1) {
 			try { throw new WavFileException("At least one filename specified  (" + args.length + ")"); }
@@ -46,7 +52,18 @@ public class wave_io {
 			// Abtastrate 
 			sampleRate = readWavFile.getSampleRate();
 			
-			
+			// Reduziere die Bitzahl der Samples
+			reducedSamples = new short[samples];
+			for (int i = 0; i < samples; i++) {
+				reducedSamples[i] = (short) ((short)readWavFile.sound[i]/bitReductionFactor);
+				//reducedSamples[i] = (short)Math.pow(bitReductionFactor, validBits);
+			}
+			// Multipliziere die Samples, um die Lautstärke zu kompensieren
+			short compensation = (short)Math.pow(bitReductionFactor, validBits);
+			for (int i = 0; i < samples; i++) {
+
+				reducedSamples[i] *= bitReductionFactor;
+			} 
 			
 			//Quote out to stop sample print in terminal
 			
@@ -75,7 +92,7 @@ public class wave_io {
 		
 		// Speicherung
 		try {
-			WavFile.write_wav(outFilename, numChannels, numFrames, validBits, sampleRate, readWavFile.sound);
+			WavFile.write_wav(outFilename, numChannels, numFrames, validBits, sampleRate, reducedSamples);
 		} catch (IOException | WavFileException e) {
 			e.printStackTrace();
 		}
