@@ -14,7 +14,7 @@ public class wave_io {
 		int numChannels = 0;
 
 		// Reduzieren der Sample Bits
-		short bitReductionFactor = 1;
+		short bitReductionFactor = 6;
 
 		String inFilename = null;
 		String outFilename = null;
@@ -72,19 +72,24 @@ public class wave_io {
 			//New counter for samples
 			//Reduce Bits
 			for(int i=0; i<samples; i++) {
-				short sample = readWavFile.sound[i];
-				//
-
-					outpuString = outpuString + Integer.toString(sample) + "\n";
+		
 					//reduce samples 
-					readWavFile.sound[i] = (short)(readWavFile.sound[i] / Math.pow(2, bitReductionFactor));
-				
-				
+					readWavFile.sound[i] = (short)(readWavFile.sound[i] >> bitReductionFactor);
+					
+					
+			}
+			for(int i=0; i<samples; i++) {
+		
+					//reduce samples 
+					readWavFile.sound[i] = (short)(readWavFile.sound[i] << bitReductionFactor);
+
+					short sample = readWavFile.sound[i];
+					outpuString = outpuString + Integer.toString(sample) + "\n";
 			}
 
 		
 			// Angepasste Headerangaben für Ausgabe
-			validBits = validBits - bitReductionFactor;
+			//validBits = validBits - bitReductionFactor;
 		/* 	sampleRate = sampleRate;
 			
 			numFrames = numFrames; */
