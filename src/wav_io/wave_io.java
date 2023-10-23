@@ -14,7 +14,7 @@ public class wave_io {
 		int numChannels = 0;
 
 		// Reduzieren der Sample Bits
-		short bitReductionFactor = 6;
+		short bitReductionFactor = 1;
 
 		String inFilename = null;
 		String outFilename = null;
