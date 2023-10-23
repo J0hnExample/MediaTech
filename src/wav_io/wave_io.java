@@ -77,21 +77,27 @@ public class wave_io {
 			// Quote out to stop sample print in terminal
 
 			// Zugriff auf die einzelne Samples mit readWavFile.sound[i]
-			
+	
+	//Aufgabe 04
 			//Write samples to file
 			String outpuString = "";
+			//New counter for samples
 			int c = 0;
 			for(int i=0; i<samples; i++) {
 				short sample = readWavFile.sound[i];
-				//Write to file
+				//
+
 				//Output only every second sample
 				if(i % 2 == 0){
 					outpuString = outpuString + Integer.toString(sample) + "\n";
+					//reduce samples 
 					readWavFile.sound[c] = readWavFile.sound[i];
 					c++;
 				}
 			}
-			// Angepasste Headerangaben
+
+		
+			// Angepasste Headerangaben für Ausgabe
 			sampleRate = sampleRate/2;
 			
 			numFrames = numFrames/2;
