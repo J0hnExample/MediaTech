@@ -11,7 +11,8 @@
             "mainClass": "wav_io.wave_io",
             "projectName": "MediaTech_39035d9f",
             //"args": "src/wav_io/a02/Sprache_Apogee_2.wav"
-            "args": "src/wav_io/a02/Sprache_Apogee_3.wav src/wav_io/a02/Sprache_Apogee_4.wav"
+            //"args": "src/wav_io/a02/Sprache_Apogee_3.wav src/wav_io/a02/Sprache_Apogee_4.wav"
+            "args": "src/wav_io/a02/sine_lo01.wav"
         },
         {
             "type": "java",
