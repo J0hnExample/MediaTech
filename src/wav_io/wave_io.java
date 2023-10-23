@@ -18,9 +18,10 @@ public class wave_io {
 
 		String inFilename = null;
 		String outFilename = null;
+		String outTxtFilename = null;
 
 		WavFile readWavFile = null;
-		short[] reducedSamples = null;
+		short[] reducedSamples = new short[samples / 2];
 
 		if (args.length < 1) {
 			try {
@@ -79,14 +80,24 @@ public class wave_io {
 			
 			//Write samples to file
 			String outpuString = "";
-			
+			int c = 0;
 			for(int i=0; i<samples; i++) {
 				short sample = readWavFile.sound[i];
 				//Write to file
-				
-				outpuString = outpuString + Integer.toString(sample) + "\n";
+				//Output only every second sample
+				if(i % 2 == 0){
+					outpuString = outpuString + Integer.toString(sample) + "\n";
+					readWavFile.sound[c] = readWavFile.sound[i];
+					c++;
+				}
 			}
-			BufferedWriter bw = new BufferedWriter(new java.io.FileWriter("C:\\Users\\sasch\\OneDrive\\Studium\\2324\\Medientechologie\\MediaTech\\src\\wav_io\\apogee_sine_loXX.txt"));
+			// Angepasste Headerangaben
+			sampleRate = sampleRate/2;
+			
+			numFrames = numFrames/2;
+		
+			outTxtFilename = args[2];
+			BufferedWriter bw = new BufferedWriter(new java.io.FileWriter(outTxtFilename));
 			bw.write(outpuString);
 			bw.close();
 		} catch (IOException | WavFileException e1) {
@@ -106,7 +117,7 @@ public class wave_io {
 
 		// Speicherung
 		try {
-			WavFile.write_wav(outFilename, numChannels, numFrames, validBits, sampleRate, reducedSamples);
+			WavFile.write_wav(outFilename, numChannels, numFrames, validBits, sampleRate, readWavFile.sound);
 		} catch (IOException | WavFileException e) {
 			e.printStackTrace();
 		}
