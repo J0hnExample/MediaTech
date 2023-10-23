@@ -14,7 +14,7 @@ public class wave_io {
 		int numChannels = 0;
 
 		// Reduzieren der Sample Bits
-		int bitReductionFactor = 1;
+		short bitReductionFactor = 1;
 
 		String inFilename = null;
 		String outFilename = null;
@@ -61,46 +61,34 @@ public class wave_io {
 				// reducedSamples[i] = (short)Math.pow(bitReductionFactor, validBits);
 			} 
 
-			reducedSamples = new short[samples];
-			for (int i = 0; i < samples; i++) {
-				reducedSamples[i] = (short) (readWavFile.sound[i] >> (16 - bitReductionFactor));
-			}
-
-
-			// Multipliziere die Samples, um die Lautstärke zu kompensieren
-			//short compensation = (short) Math.pow(bitReductionFactor, validBits);
-			for (int i = 0; i < samples; i++) {
-
-				reducedSamples[i] *= bitReductionFactor;
-			} 
  */
 			// Quote out to stop sample print in terminal
 
 			// Zugriff auf die einzelne Samples mit readWavFile.sound[i]
 	
-	//Aufgabe 04
+	//Aufgabe 05
 			//Write samples to file
 			String outpuString = "";
 			//New counter for samples
-			int c = 0;
+			//Reduce Bits
 			for(int i=0; i<samples; i++) {
 				short sample = readWavFile.sound[i];
 				//
 
-				//Output only every second sample
-				if(i % 2 == 0){
 					outpuString = outpuString + Integer.toString(sample) + "\n";
 					//reduce samples 
-					readWavFile.sound[c] = readWavFile.sound[i];
-					c++;
-				}
+					readWavFile.sound[i] = (short)(readWavFile.sound[i] / Math.pow(2, bitReductionFactor));
+				
+				
 			}
 
 		
 			// Angepasste Headerangaben für Ausgabe
-			sampleRate = sampleRate/2;
+			validBits = validBits - bitReductionFactor;
+		/* 	sampleRate = sampleRate;
 			
-			numFrames = numFrames/2;
+			numFrames = numFrames; */
+
 		
 			outTxtFilename = args[2];
 			BufferedWriter bw = new BufferedWriter(new java.io.FileWriter(outTxtFilename));

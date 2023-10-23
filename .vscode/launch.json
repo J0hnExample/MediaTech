@@ -12,7 +12,7 @@
             "projectName": "MediaTech_39035d9f",
             //"args": "src/wav_io/a02/Sprache_Apogee_2.wav"
             //"args": "src/wav_io/a02/Sprache_Apogee_3.wav src/wav_io/a02/Sprache_Apogee_4.wav"
-            "args": "src/wav_io/a02/sine_hi01.wav src/wav_io/a02/sine_hi01_reduced.wav src/wav_io/a02/sine_hi01_reduced.txt"
+            "args": "src/wav_io/a02/Musik_Apogee.wav src/wav_io/a02/Music_bitreduced.wav src/wav_io/a02/Musik_bitreduced.txt"
         },
         {
             "type": "java",
