@@ -68,25 +68,33 @@ public class wave_io {
 	
 	//Aufgabe 05
 			//Write samples to file
-			String outpuString = "";
+			String outputString = "";
 			//New counter for samples
-			//Reduce Bits
+			
+			short[] reducedSound = new short[samples];
 			for(int i=0; i<samples; i++) {
 		
 					//reduce samples 
-					readWavFile.sound[i] = (short)(readWavFile.sound[i] >> bitReductionFactor);
-					
+					//readWavFile.sound[i] = (short)(readWavFile.sound[i] >> bitReductionFactor);
+					short originalSample = readWavFile.sound[i];
+					short reducedSample = (short)(readWavFile.sound[i] >> bitReductionFactor);
+					reducedSound[i] = (short)readWavFile.sound[i] - (short)reducedSample;
+
+					readWavFile.sound[i] = (short)(reducedSample);
+   					
 					
 			}
-			for(int i=0; i<samples; i++) {
+			/* for(int i=0; i<samples; i++) {
 		
 					//reduce samples 
 					readWavFile.sound[i] = (short)(readWavFile.sound[i] << bitReductionFactor);
 
 					short sample = readWavFile.sound[i];
-					outpuString = outpuString + Integer.toString(sample) + "\n";
+					short reducedSample = (short)(readWavFile.sound[i] >> (16-bitReductionFactor-1));
+					//outputstring
+					outputString = outputString + reducedSample + " ";
 			}
-
+ */
 		
 			// Angepasste Headerangaben für Ausgabe
 			//validBits = validBits - bitReductionFactor;
@@ -97,7 +105,7 @@ public class wave_io {
 		
 			outTxtFilename = args[2];
 			BufferedWriter bw = new BufferedWriter(new java.io.FileWriter(outTxtFilename));
-			bw.write(outpuString);
+			bw.write(outputString);
 			bw.close();
 		} catch (IOException | WavFileException e1) {
 			// TODO Auto-generated catch block
