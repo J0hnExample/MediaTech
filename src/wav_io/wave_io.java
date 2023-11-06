@@ -9,7 +9,7 @@ public class wave_io {
 
         int samples = 0;
         int validBits = 0;
-        long sampleRate = 0;üpc
+        long sampleRate = 0;
         long numFrames = 0;
         int numChannels = 0;
 
